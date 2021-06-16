@@ -12,7 +12,7 @@ const Header = (props) => {
         return (
             <>
                 <li className='nav-item'>
-                    <Link className='nav-link' to='/bookmark'>Bookmark</Link>
+                    <Link className='nav-link' to='/bookmark'>Favorites</Link>
                 </li>
                 <li className='nav-item'>
                     <a className='nav-link' onClick={props.logout} href="/">Log Out</a>
@@ -37,7 +37,7 @@ const Header = (props) => {
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <Link className="navbar-brand" to="/">Manga King</Link>
+                <Link className="navbar-brand" to="/">MangaBento</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

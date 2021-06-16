@@ -60,7 +60,7 @@ const Home = props => {
                 <div className='col-lg-2 d-flex flex-column align-items-start' style={{ marginTop: '10px' }}>
                     <h4>Manga by genres:</h4>
                     <ul className='d-flex flex-column align-items-start' style={{ listStyle: 'none', width: '100%' }}>
-                        <li><Link style={{ color: '#000' }} to='/genres/algo'>Algo</Link></li>
+                        <li><Link style={{ color: '#000' }} to='/genres/algo'>Alphabetical</Link></li>
                     </ul>
                 </div>
             </div>
