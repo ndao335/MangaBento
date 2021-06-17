@@ -5,6 +5,8 @@ import { logout } from '../redux/actions/userAction'
 
 import { Link } from 'react-router-dom'
 
+import './Header.css'
+
 const Header = (props) => {
 
 
@@ -36,8 +38,10 @@ const Header = (props) => {
 
     return (
         <div>
-            <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <Link className="navbar-brand" to="/">MangaBento</Link>
+            <nav className="navbar navbar-expand-lg navbar-light">
+                <Link className="navbar-brand" to="/">
+                    <img className="logo" src="./logo.png" alt="MangaBento"/>
+                </Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>

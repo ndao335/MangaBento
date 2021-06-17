@@ -12,8 +12,7 @@ const getMangaNames = async (req, res) => {
         const mangaFolder = fs.readdirSync(mangaFolderUrl)
         for (const items of mangaFolder) {
             if (mangas === path.basename(items, '.jpeg')) {
-                console.log(mangas);
-                const dbManga = await Manga.findOne({ name: mangas.replace('-', ' ') }).exec()
+                const dbManga = await Manga.findOne({ name: mangas.replace(/-/g, ' ') }).exec()
                 returnItems.push({
                     name: dbManga.name,
                     id: dbManga._id,

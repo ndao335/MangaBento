@@ -58,13 +58,13 @@ function MangaPage(props) {
         <div className='container'>
             <div className="row" style={{ marginTop: '30px', padding: '20px', backgroundColor: '#fff', borderRadius: '5px' }}>
                 <div className='col-lg-3 d-flex flex-column align-items-center'>
-                    <img src={`data:image/jpeg; base64, ${props.manga.thumbnail}`} alt='algo' className='img-fluid' style={{ width: '300px', height: '375px' }} />
+                    <img src={`../${props.manga.thumbnail}`} alt='algo' className='img-fluid' style={{ width: '300px', height: '375px' }} />
                     {
                         props.user.isLogged ? addRemoveBookmark() : <button disabled className='btn btn-block btn-primary' style={{ marginTop: '5px', maxWidth: '300px' }}>Add Favorite</button>
                     }
                 </div>
 
-                <div className='col-lg-8 d-flex flex-column align-items-start justify-content-start' style={{ marginTop: '10px', wordWrap: 'break-word', textAlign: 'start', wordBreak: 'break-all' }}>
+                <div className='col-lg-8 d-flex flex-column align-items-start justify-content-start' style={{ marginTop: '10px', wordWrap: 'break-word', textAlign: 'start' }}>
                     <p>
                         Name: {mangaName(props.manga.name)}
                     </p>
@@ -75,7 +75,7 @@ function MangaPage(props) {
                         Author: {mangaName(props.manga.author)}
                     </p>
                     <p>
-                        Genres: {props.manga.genres.map(item => <span>{item} | </span>)}
+                        Genres: {props.manga.genres.map((item) => <span>{item} | </span>)}
                     </p>
                     <p>
                         Rating: {props.manga.rating}
@@ -94,7 +94,15 @@ function MangaPage(props) {
                     <h3 style={{ textAlign: 'start' }}>Chapters</h3>
                 </div>
                 <ul className="col-lg-12" style={{ listStyle: 'none', maxHeight: '225px', padding: '0px 15px', overflowY: 'auto' }}>
-                    <li> <Link style={{ color: '#000' }} to={'/readmanga'}> Chapter 1</Link></li>
+                    <li className="col-lg-3" style={{ display: 'inline'}}>
+                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 1}}}> Chapter 1</Link>
+                    </li>
+                    <li className="col-lg-3" style={{ display: 'inline'}}>
+                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 2}}}> Chapter 2</Link>
+                    </li>
+                    <li className="col-lg-3" style={{ display: 'inline'}}>
+                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 3}}}> Chapter 3</Link>
+                    </li>
                 </ul>
             </div>
         </div>

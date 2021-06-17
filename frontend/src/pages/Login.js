@@ -4,6 +4,8 @@ import axios from 'axios'
 import { connect } from 'react-redux'
 import { login } from '../redux/actions/userAction'
 
+import { Link } from 'react-router-dom'
+
 import './Login.css'
 
 const Login = (props) => {
@@ -43,9 +45,11 @@ const Login = (props) => {
     }
 
     return (
-        <div className='loginPage'>
+        <div className='loginPage' style={{ backgroundImage: `url("./sideview.jpeg")`}}>
             <div className='loginForm'>
-                <h1>Log In</h1>
+                <img className="logo" src="./logo.png" alt="MangaBento"/>
+                <h4>Log In</h4>
+                <p>Haven't register? <Link className="nav-link" to="/register">Register</Link></p>
                 <form onSubmit={handleSubmit}>
                     <div className='form-group'>
                         <input required type="text" value={username} onChange={usernameChanged} className='form-control' placeholder='Username' />

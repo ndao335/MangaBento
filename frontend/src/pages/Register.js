@@ -4,6 +4,8 @@ import axios from 'axios'
 
 import './Register.css'
 
+import { Link } from 'react-router-dom'
+
 const Register = (props) => {
 
     const [username, setUsername] = useState('')
@@ -40,9 +42,11 @@ const Register = (props) => {
     }
 
     return (
-        <div className='registerPage'>
+        <div className='registerPage' style={{ backgroundImage: `url("./sideview.jpeg")`}}>
             <div className='registerForm'>
-                <h1>Register</h1>
+                <img className="logo" src="./logo.png" alt="MangaBento"/>
+                <h4>Register</h4>
+                <p>Already registed? <Link className="nav-link" to="/register">Login</Link></p>
                 <form onSubmit={handleSubmit}>
                     <div className='form-group'>
                         <input required type="text" value={username} onChange={usernameChanged} className='form-control' placeholder='Username' />

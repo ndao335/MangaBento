@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 const cors = require('cors')
 const app = express()
 const { userRoute, mangaRoute } = require('./routes')
+const Manga = require('./models/mangaModel')
 
 require('dotenv').config()
 

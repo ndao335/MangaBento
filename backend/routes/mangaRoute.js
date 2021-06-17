@@ -1,6 +1,9 @@
 const route = require('express').Router()
 const mangaController = require('../controllers/mangaController')
 
+// Upload manga info
+route.post('/uploaddata', mangaController.uploadData)
+
 // Get mangas
 // Manga pages
 route.get('/:manga/:chapter', mangaController.getMangaPages)
@@ -8,9 +11,6 @@ route.get('/:manga/:chapter', mangaController.getMangaPages)
 route.get('/:id', mangaController.getMangaInfo)
 // Manga names
 route.get('/', mangaController.getMangaNames)
-
-// Upload manga info
-route.post('/uploaddata', mangaController.uploadData)
 
 
 module.exports = route

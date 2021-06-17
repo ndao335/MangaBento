@@ -1,0 +1,12 @@
+.navbar{
+    background-color: orange;
+}
+
+.nav-item:hover{
+    background-color: skyblue;
+    color: black;
+}
+
+.logo{
+    width: 100px;
+}
