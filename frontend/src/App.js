@@ -8,6 +8,7 @@ import Login from './pages/Login'
 import Manga from './pages/Manga'
 import ReadManga from './pages/ReadManga'
 import Bookmark from './pages/Bookmark'
+import AdminPage from './pages/Admin'
 
 import { Route } from 'react-router-dom'
 
@@ -35,6 +36,7 @@ const App = props => {
                 <Route exact path={'/'} component={Home} />
                 <Route exact path={'/register'} component={Register} />
                 <Route exact path={'/login'} component={Login} />
+                <Route exact path={'/admin'} component={AdminPage} />
                 <Route path={'/manga'} component={Manga} />
                 <Route path={'/readmanga'} component={ReadManga} />
                 <Route path={'/bookmark'} component={Bookmark} />

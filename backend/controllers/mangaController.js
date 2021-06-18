@@ -3,7 +3,6 @@ const path = require('path')
 const Manga = require('../models/mangaModel')
 
 const getMangaNames = async (req, res) => {
-
     let returnItems = []
     const MANGA_FOLDER = process.env.MANGA_FOLDER
     const mangaNames = fs.readdirSync(MANGA_FOLDER)
@@ -73,8 +72,8 @@ const getMangaInfo = (req, res) => {
     )
 }
 
-const uploadData = ((req, res) => {
-    if (!req.body.name || !req.body.author || !req.body.genres || !req.body.description) {
+const uploadData = async (req, res) => {
+    if (!req.body.name || !req.body.alternative || !req.body.author || !req.body.genres || !req.body.description) {
         return res.json({ message: 'Incomplete request!' })
     }
 
@@ -91,21 +90,25 @@ const uploadData = ((req, res) => {
 
             const newManga = new Manga({
                 name: req.body.name,
-                author: req.body.author,
                 alternative: req.body.alternative ? req.body.alternative : '',
-                genres: [...req.body.genres],
+                author: req.body.author,
+                thumbnail: req.body.thumbnail,
+                genres: req.body.genres,
                 description: req.body.description,
-                thumbnail: req.body.thumbnail
+                rating: Math.floor(Math.random() * 5).toString() + "/5",
+                views: 0
             })
 
-            newManga.save()
-                .then(doc => {
-                    res.json({ message: `Manga ${doc.name} created!` })
-                })
-                .catch(err => res.json({ message: err }))
+            newManga.save((err) => {
+                if(err){
+                    console.log(err)
+                    return res.status(500).send({message: err.message})
+                }
+                return res.status(200).send({message: `Manga ${req.body.name} created!`})
+            })
         }
     )
-})
+}
 
 module.exports = {
     getMangaPages,

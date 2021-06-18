@@ -7,7 +7,6 @@ import reportWebVitals from './reportWebVitals';
 import './index.css'
 
 ReactDOM.render(
-
   <BrowserRouter>
     <App />
   </BrowserRouter>,

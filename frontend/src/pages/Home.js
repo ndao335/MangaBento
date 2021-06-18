@@ -8,7 +8,6 @@ import './Home.css'
 const Home = props => {
 
     const [searchTerm, setSearchTerm] = React.useState('')
-    // const [searchResults, setSearchResults] = React.useState(false)
     const [mangaList, setMangaList] = React.useState([])
     const [fullMangaList, setFullMangaList] = React.useState([]);
 
@@ -21,10 +20,6 @@ const Home = props => {
     }, [])
 
     const onSearchInputChange = e => {
-        if(e.target.value == '')
-        {
-            setMangaList(fullMangaList);
-        }
         setMangaList(fullMangaList);
         setSearchTerm(e.target.value);
     };
@@ -49,10 +44,8 @@ const Home = props => {
         }
     }
 
-
     return (
         <div className='homePage container-fluid'>
-
             <div className='row'>
                 <div className='col-lg-12'>
                     <form onSubmit={(e) => {
