@@ -2,6 +2,7 @@ const User = require('../models/userModel')
 const Manga = require('../models/mangaModel')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
+const fs = require('fs')
 
 const signUp = async (req, res) => {
 
@@ -83,12 +84,15 @@ const getBookmarks = async (req, res) => {
     try {
         const user = await User.findOne({username: req.params.username})
         const mangas = []
+        const MANGA_FOLDER = process.env.MANGA_FOLDER
         for(const manga of user.bookmarks){
             const mangaItem = await Manga.findOne({_id: manga})
+            const mangaURL = `${mangaItem.name}`.replace(" ", "-");
+            const thumbnail = `${MANGA_FOLDER}/${mangaURL}/${mangaItem.thumbnail}`
             mangas.push({
                 name: mangaItem.name,
                 id: mangaItem.id,
-                image: mangaItem.thumbnail
+                image: fs.readFileSync(`${thumbnail}`, 'base64')
             })
         }
         res.send(mangas)

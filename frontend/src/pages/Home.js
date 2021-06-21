@@ -10,6 +10,7 @@ const Home = props => {
     const [searchTerm, setSearchTerm] = React.useState('')
     const [mangaList, setMangaList] = React.useState([])
     const [fullMangaList, setFullMangaList] = React.useState([]);
+    let i = 1;
 
     React.useEffect(() => {
         axios.get('http://localhost:5000/api/manga')
@@ -30,14 +31,33 @@ const Home = props => {
     }, [searchTerm]);
 
     const handleView = e => {
-        if(e == "letter"){
+        if(e == "views"){
+            const results = mangaList.sort(
+                function (a, b)
+                {
+                    if(a.views < b.views) return 1;
+                    else return -1;
+                }
+            )
+            setMangaList(results);
+        }
+        else if(e == "rating"){
+            const results = mangaList.sort(
+                function (a,b)
+                {
+                    if(a.rating < b.rating) return 1;
+                    else return -1;
+                });
+            
+            setMangaList(results);
+        }
+        else if(e == "letter"){
             const results = mangaList.sort(
                 function (a,b)
                 { 
                     if(a.name < b.name) return 1;
                     else return -1;
                 });
-            console.log(results);
             setMangaList(results);
         } else{
             setMangaList(fullMangaList);
@@ -46,7 +66,7 @@ const Home = props => {
 
     return (
         <div className='homePage container-fluid'>
-            <div className='row'>
+            <div className='row' style={{ textAlign: 'center' }}>
                 <div className='col-lg-12'>
                     <form onSubmit={(e) => {
                         e.preventDefault();
@@ -56,33 +76,34 @@ const Home = props => {
                 </div>
             </div>
 
-            <div className='row d-flex flex-row justify-content-between'>
-                <div className="sideview-container">
-                    <img className="clipimage" src="./sideview.jpeg" alt="sideview image"/>
+            <div className='mainContainer'>
+                <div className='viewContainer d-flex flex-column text-center'>
+                    <h4>Manga by genres:</h4>
+                    <ul className='d-flex flex-column text-center'>
+                        <Link onClick={() => {handleView("default")}}>Default</Link>
+                        <Link onClick={() => {handleView("views")}}>Highest View</Link>
+                        <Link onClick={() => {handleView("rating")}}>Rating View</Link>
+                    </ul>
                 </div>
-                <div className='col-lg-6 container-fluid' >
-                    <div className='row'>
-                        <div style={{ padding: '10px' }} className='col-lg-12 text-center'>
+                <div>
+                    <div className="midContent">
+                        <div className='title text-center'>
                             <h2>Read Manga Online</h2>
                         </div>
 
-                        <div className='row d-flex flex-row justify-content-between'>
-                            <div className='col-lg-8 d-flex justify-content-center'>
+                        <div className='justify-content-between'>
+                            <div className='mangaContainer'>
                                 {
                                     mangaList.map((item, index) => {
-                                        return <MangaCard key={index} manga={{ name: item.name, id: item.id, image: item.image }} />
+                                        return(<MangaCard key={index} manga={{ name: item.name, id: item.id, image: item.image }}/>)
                                     })
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className='col-lg-2 d-flex flex-column align-items-start' style={{ marginTop: '10px' }}>
-                    <h4>Manga by genres:</h4>
-                    <ul className='d-flex flex-column align-items-start' style={{ listStyle: 'none', width: '100%' }}>
-                        <Link onClick={() => {handleView("default")}}>Default</Link>
-                        <Link onClick={() => {handleView("letter")}}>Reverse Order</Link>
-                    </ul>
+                <div className='col-lg-3 container-fluid' className="sideview-container">
+                    <img className="clipimage" src="./sideview.jpeg" alt="sideview image"/>
                 </div>
             </div>
         </div>

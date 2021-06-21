@@ -42,14 +42,13 @@ const AdminPage = (props) => {
                 thumbnail: mangaName.replace(" ", "-") + ".jpeg"
             }
         ).then(res => {
-            // setMangaName('')
-            // setAlternativeName('')
-            // setAuthorName('')
-            // setGenres('')
-            // setDescription('')
+            setMangaName('')
+            setAlternativeName('')
+            setAuthorName('')
+            setGenres('')
+            setDescription('')
 
         }).catch(err => alert(err))
-        
     }
 
     return (

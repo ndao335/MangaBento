@@ -20,6 +20,7 @@ const Login = (props) => {
 
     const [login, setLogin] = useState(false); //set up login
     const [data, setData] = useState({}); //set up fb data
+
     const responseFacebook = (response) => {
         console.log(response);
         setData(response);
@@ -51,7 +52,7 @@ const Login = (props) => {
     const handleSubmit = e => {
         e.preventDefault()
         axios.post(
-            'https://localhost:5000/api/user/signin',
+            'http://localhost:5000/api/user/signin',
             {
                 username,
                 password
@@ -63,11 +64,12 @@ const Login = (props) => {
                 setUsername('')
                 setPassword('')
                 props.history.push('/')
-                setLogin(true);
+                //setLogin(true);
             }
         })
         .catch(err => {
-            setLogin(false);
+            console.log(err);
+            //setLogin(false);
             alert('Incorrect username or password')
         })
     }

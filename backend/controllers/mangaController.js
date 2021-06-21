@@ -15,7 +15,13 @@ const getMangaNames = async (req, res) => {
                 returnItems.push({
                     name: dbManga.name,
                     id: dbManga._id,
-                    image: fs.readFileSync(`${mangaFolderUrl}/${items}`, 'base64')
+                    image: fs.readFileSync(`${mangaFolderUrl}/${items}`, 'base64'),
+                    alternative: dbManga.alternative,
+                    author: dbManga.author,
+                    genres: dbManga.genres,
+                    description: dbManga.description,
+                    rating: dbManga.rating,
+                    views: dbManga.views
                 })
             }
         }
@@ -110,9 +116,35 @@ const uploadData = async (req, res) => {
     )
 }
 
+const updateView = async (req, res) => {
+    if (!req.body.name) {
+        return res.json({ message: 'Incomplete request!' })
+    }
+    Manga.findOne(
+        { name: req.body.name },
+        (err, manga) => {
+            if (err) {
+                return res.json({ message: err })
+            }
+            if (manga) {
+                const numOfViews = manga.views + 1;
+                manga.views = numOfViews;
+                manga.save((err) => {
+                    if(err){
+                        console.log(err)
+                        return res.status(500).send({message: err.message})
+                    }
+                    return res.status(200).send({message: `Manga ${req.body.name} created!`})
+                })
+            }
+        }
+    )
+}
+
 module.exports = {
     getMangaPages,
     getMangaInfo,
     getMangaNames,
-    uploadData
+    uploadData,
+    updateView
 }

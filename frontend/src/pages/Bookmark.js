@@ -15,9 +15,11 @@ function Bookmark(props) {
         })
     }, [])
 
+    console.log(bookmarks)
+
     return (
         <div className='container-fluid'>
-            <div className="row" style={{ marginTop: '30px' }}>
+            <div className="row" style={{ marginTop: '30px', textAlign: 'center' }}>
                 <div className="col-lg-12">
                     <h1>Favorites</h1>
                 </div>

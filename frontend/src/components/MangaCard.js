@@ -29,7 +29,7 @@ const MangaCard = (props) => {
     }
 
     return (
-        <div className='mangaCard' onClick={redirectToManga}>
+        <div className='mangaCard d-inline-block' onClick={redirectToManga}>
             <img src={`data:image/jpeg; base64, ${props.manga.image}`} alt={props.manga.name} />
             <div>{mangaName(props.manga.name)}</div>
         </div>

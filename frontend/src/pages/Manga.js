@@ -78,7 +78,7 @@ function MangaPage(props) {
                         Genres: {props.manga.genres.map((item) => <span>{item} | </span>)}
                     </p>
                     <p>
-                        Rating: {props.manga.rating}
+                        Rating: {props.manga.rating}/5
                     </p>
                     <p>
                         Description: {props.manga.description}
@@ -95,13 +95,16 @@ function MangaPage(props) {
                 </div>
                 <ul className="col-lg-12" style={{ listStyle: 'none', maxHeight: '225px', padding: '0px 15px', overflowY: 'auto' }}>
                     <li className="col-lg-3" style={{ display: 'inline'}}>
-                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 1}}}> Chapter 1</Link>
+                        {/* <Link style={{ color: '#000' }} onClick={increaseViews} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 1}}}> Chapter 1</Link> */}
+                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {displayName: mangaName(props.manga.name), name: props.manga.name, chapter: 1}}}> Chapter 1</Link>
                     </li>
                     <li className="col-lg-3" style={{ display: 'inline'}}>
-                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 2}}}> Chapter 2</Link>
+                        {/* <Link style={{ color: '#000' }} onClick={increaseViews} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 2}}}> Chapter 2</Link> */}
+                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {displayName: mangaName(props.manga.name), name: props.manga.name, chapter: 2}}}> Chapter 2</Link>
                     </li>
                     <li className="col-lg-3" style={{ display: 'inline'}}>
-                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 3}}}> Chapter 3</Link>
+                        {/* <Link style={{ color: '#000' }} onClick={increaseViews} to={{ pathname: '/readmanga', state: {name: props.manga.name, chapter: 3}}}> Chapter 3</Link> */}
+                        <Link style={{ color: '#000' }} to={{ pathname: '/readmanga', state: {displayName: mangaName(props.manga.name), name: props.manga.name, chapter: 3}}}> Chapter 3</Link>
                     </li>
                 </ul>
             </div>
