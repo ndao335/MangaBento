@@ -1,0 +1,13 @@
+.logo{
+    width: 100px;
+}
+
+footer{
+    display: inline-block !important;
+    background-color: burlywood;
+    width: 100%;
+}
+
+footer div{
+    display: inherit;
+}

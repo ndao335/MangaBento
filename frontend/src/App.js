@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 
 import Header from './components/Header'
+import Footer from './components/Footer'
 
 import Home from './pages/Home'
 import Register from './pages/Register'
@@ -40,6 +41,7 @@ const App = props => {
                 <Route path={'/manga'} component={Manga} />
                 <Route path={'/readmanga'} component={ReadManga} />
                 <Route path={'/bookmark'} component={Bookmark} />
+                <Footer />
             </div>
         </Provider>
     )

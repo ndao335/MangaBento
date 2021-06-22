@@ -37,13 +37,13 @@
 }
 
 .sideview-container{
-    position: relative;
     max-width: 100%;
 }
 
 .clipimage{
     position: absolute;
-    clip: rect(0, 230px, 1500px, 0);
+    clip: rect(0, 240px, 586px, 0);
+    max-height: 100%;
 }
 
 .searchManga{
@@ -70,28 +70,46 @@
         max-width: 100%;
     }
 }
+
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
     .midContent{
         width: auto;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         padding-left: 20px;
         padding-right: 20px;
     }
 
     .mangaContainer{
         display: grid;
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .mainContainer{ grid-template-columns: repeat(1, 1fr); }
 
     .clipimage{
-        display: inline;
+        display: none;
+    }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+    .midContent{
+        width: auto;
+        grid-template-columns: repeat(3, 1fr);
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .mangaContainer{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .mainContainer{ grid-template-columns: repeat(1, 1fr); }
+
+    .clipimage{
+        display: none;
     }
 }
 
@@ -112,7 +130,7 @@
     .mainContainer{ grid-template-columns: repeat(2, 1fr); }
 
     .clipimage{
-        display: inline;
+        display: none;
     }
 }
 

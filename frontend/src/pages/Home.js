@@ -31,36 +31,51 @@ const Home = props => {
     }, [searchTerm]);
 
     const handleView = e => {
-        if(e == "views"){
-            const results = mangaList.sort(
-                function (a, b)
-                {
-                    if(a.views < b.views) return 1;
-                    else return -1;
-                }
-            )
-            setMangaList(results);
-        }
-        else if(e == "rating"){
-            const results = mangaList.sort(
-                function (a,b)
-                {
-                    if(a.rating < b.rating) return 1;
-                    else return -1;
-                });
-            
-            setMangaList(results);
-        }
-        else if(e == "letter"){
-            const results = mangaList.sort(
-                function (a,b)
-                { 
-                    if(a.name < b.name) return 1;
-                    else return -1;
-                });
-            setMangaList(results);
-        } else{
-            setMangaList(fullMangaList);
+        let results = mangaList;
+        let temporary = fullMangaList;
+        switch(e){
+            case "views":
+                results = mangaList.sort(
+                    function (a, b)
+                    {
+                        if(a.views < b.views) return 1;
+                        else return -1;
+                    }
+                )
+                setMangaList(results);
+                break;
+            case "rating":
+                results = mangaList.sort(
+                    function (a,b)
+                    {
+                        if(a.rating < b.rating) return 1;
+                        else return -1;
+                    });
+                
+                setMangaList(results);
+                break;
+            case "letter":
+                results = mangaList.sort(
+                    function (a,b)
+                    { 
+                        if(a.name < b.name) return 1;
+                        else return -1;
+                    });
+                setMangaList(results);
+                break;
+            case "comedy":
+                temporary = fullMangaList;
+                results = temporary.filter(manga => (manga.genres).includes('Comedy'));
+                setMangaList(results);
+                break;
+            case "fantasy":
+                temporary = fullMangaList;
+                results = temporary.filter(manga => (manga.genres).includes('Fantasy'));
+                setMangaList(results);
+                break;
+            default:
+                setMangaList(fullMangaList);
+                break;
         }
     }
 
@@ -83,6 +98,8 @@ const Home = props => {
                         <Link onClick={() => {handleView("default")}}>Default</Link>
                         <Link onClick={() => {handleView("views")}}>Highest View</Link>
                         <Link onClick={() => {handleView("rating")}}>Rating View</Link>
+                        <Link onClick={() => {handleView("comedy")}}>Comedy</Link>
+                        <Link onClick={() => {handleView("fantasy")}}>Fantasy</Link>
                     </ul>
                 </div>
                 <div>
@@ -102,7 +119,7 @@ const Home = props => {
                         </div>
                     </div>
                 </div>
-                <div className='col-lg-3 container-fluid' className="sideview-container">
+                <div className="sideview-container">
                     <img className="clipimage" src="./sideview.jpeg" alt="sideview image"/>
                 </div>
             </div>

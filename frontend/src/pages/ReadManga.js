@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import Button from "react-bootstrap/Button";
 import axios from 'axios'
 
@@ -17,17 +17,23 @@ function ReadManga(props) {
     }, [])
 
     useEffect(() => {
-        console.log(mangaName, chapter);
         axios.get(`http://localhost:5000/api/manga/${mangaName}/${chapter}`)
             .then(res => {
                 const myImages = [...res.data]
                 setImages(myImages)
             })
+
         axios.post('http://localhost:5000/api/manga/updateView',
                 {
                     name: props.location.state.name,
                 }
             ).catch(err => alert(err))
+        if(props.location.state.chapter === 1){
+            document.getElementById('previousButton').style.display = 'none';
+        }
+        else if (props.location.state.chapter === 3){
+            document.getElementById('nextButton').style.display = 'none';
+        }
     }, [])
 
     return (
@@ -45,11 +51,23 @@ function ReadManga(props) {
 
             <div className='col-lg-12' style={{ margin: '10px' }}>
                 <div className='d-flex flex-row justify-content-center align-items-center'>
-                    <Link to={{ pathname: '/readmanga', state: {displayName: props.location.state.displayName, name: props.location.state.name, chapter: (props.location.state.chapter - 1)}}} onClick={() => window.location.reload()}>
-                        <Button className='btn btn-success' style={{ marginRight: '5px' }}>Previous chapter</Button>
+                    <Link to={{ 
+                        pathname: '/readmanga', 
+                        state: {
+                            displayName: props.location.state.displayName, 
+                            name: props.location.state.name, 
+                            chapter: (props.location.state.chapter - 1)}}} 
+                        onClick={() => window.location.reload()}>
+                        <Button id='previousButton' className='btn btn-success' style={{ marginRight: '5px' }}>Previous chapter</Button>
                     </Link>
-                    <Link to={{ pathname: '/readmanga', state: {displayName: props.location.state.displayName, name: props.location.state.name, chapter: (props.location.state.chapter + 1)}}} onClick={() => window.location.reload()}>
-                        <Button className='btn btn-success' style={{ marginLeft: '5px' }}>Next chapter</Button>
+                    <Link to={{ 
+                        pathname: '/readmanga', 
+                        state: {
+                            displayName: props.location.state.displayName, 
+                            name: props.location.state.name, 
+                            chapter: (props.location.state.chapter + 1)}}} 
+                        onClick={() => window.location.reload()}>
+                        <Button id='nextButton' className='btn btn-success' style={{ marginLeft: '5px' }}>Next chapter</Button>
                     </Link>
                 </div>
             </div>            
