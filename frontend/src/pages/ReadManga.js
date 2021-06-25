@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from "react-bootstrap/Button";
 import axios from 'axios'
 
@@ -34,7 +34,7 @@ function ReadManga(props) {
         else if (props.location.state.chapter === 3){
             document.getElementById('nextButton').style.display = 'none';
         }
-    }, [])
+    })
 
     return (
         <div className='container-fluid d-flex flex-column justify-content-center align-items-center' style={{ minHeight: 'calc(100vh - 56px)', backgroundColor: '#000' }}>

@@ -11,11 +11,10 @@ function Bookmark(props) {
         axios.get(
             `http://localhost:5000/api/user/bookmarks/${props.user.username}`
         ).then(res => {
+            console.log(res);
             setBookmarks([...res.data])
         })
-    }, [])
-
-    console.log(bookmarks)
+    })
 
     return (
         <div className='container-fluid'>

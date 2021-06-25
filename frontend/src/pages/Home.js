@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import MangaCard from '../components/MangaCard'
@@ -10,7 +10,6 @@ const Home = props => {
     const [searchTerm, setSearchTerm] = React.useState('')
     const [mangaList, setMangaList] = React.useState([])
     const [fullMangaList, setFullMangaList] = React.useState([]);
-    let i = 1;
 
     React.useEffect(() => {
         axios.get('http://localhost:5000/api/manga')
@@ -120,7 +119,7 @@ const Home = props => {
                     </div>
                 </div>
                 <div className="sideview-container">
-                    <img className="clipimage" src="./sideview.jpeg" alt="sideview image"/>
+                    <img className="clipimage" src="./sideview.jpeg" alt="sideview"/>
                 </div>
             </div>
         </div>

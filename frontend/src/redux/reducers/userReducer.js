@@ -1,4 +1,4 @@
-import { addBookmark } from "../actions/userAction"
+//import { addBookmark } from "../actions/userAction"
 
 const initialState = {
     isLogged: false,

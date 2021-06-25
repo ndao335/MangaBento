@@ -18,10 +18,4 @@ const Footer = (props) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        user: state.user
-    }
-}
-
 export default Footer;

@@ -16,7 +16,7 @@ function MangaPage(props) {
         if (props.manga.name === '') {
             props.history.push('/')
         }
-    }, [])
+    })
 
     const handleFavorite = () => {
         if (!props.user.username || !props.manga._id) {

@@ -25,9 +25,10 @@ const Login = (props) => {
         console.log(response);
         setData(response);
         if(response.accessToken){
-          setLogin(true);
+            console.log(data);
+            setLogin(true);
         } else{
-          setLogin(false);
+            setLogin(false);
         }
     }
 
