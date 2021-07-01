@@ -23,10 +23,11 @@ const Home = props => {
         setMangaList(fullMangaList);
         setSearchTerm(e.target.value);
     };
-
+    
     React.useEffect(() => {
         const results = mangaList.filter(manga => (manga.name).toLowerCase().includes(searchTerm.toLowerCase()));
         setMangaList(results);
+        // eslint-disable-next-line
     }, [searchTerm]);
 
     const handleView = e => {
